@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Input, Space } from 'antd';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useRecoilValue } from 'recoil';
+import { authState } from '../../atoms/authToken';
 
 type UploadCommentProps = {
     
@@ -11,12 +13,18 @@ type UploadCommentProps = {
 const UploadComment:React.FC<UploadCommentProps> = () => {
     const { id } = useParams();
     const [text, setText] = useState('');
+    const authToken = useRecoilValue(authState);
 
     const sendData = async(text: string) => {
 
+        if(authToken.token === ""){
+            console.log('please log in first');
+            return
+        }
+
         const headers = {
             'Content-Type' : 'application/json',
-            'Authorization' : authToken
+            'Authorization' : authToken.token
         }
         console.log(id);
         try {
@@ -42,6 +50,7 @@ const UploadComment:React.FC<UploadCommentProps> = () => {
     const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement> | undefined) => {
         if (e!.key === "Enter"){
             console.log('this is: ', text);
+            sendData(text);
             setText('');
         }
     };
