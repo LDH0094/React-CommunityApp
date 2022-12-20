@@ -14,3 +14,10 @@ export type Thread = {
     nickname: string
     _id: string
   }
+
+  export type Comment = {
+    content: string;
+    author: string;
+    author_id: string;
+    date: Date;
+  }

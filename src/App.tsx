@@ -7,6 +7,8 @@ type AppProps = {
 
 const App:React.FC<AppProps> = () => {
   
-  return (<LayoutAnt/>);
+  return (
+  <LayoutAnt/>
+  );
 }
 export default App;

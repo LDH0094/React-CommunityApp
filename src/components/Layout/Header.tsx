@@ -1,3 +1,4 @@
+import { Space } from 'antd';
 import React from 'react';
 
 type HeaderProps = {
@@ -6,7 +7,12 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = () => {
     
-    return <><p>hello!</p></>
+    return (<Space>
+    
+    <h2>The Remnants</h2>
+    </Space>
+    );
+
 }
 export default Header;
 

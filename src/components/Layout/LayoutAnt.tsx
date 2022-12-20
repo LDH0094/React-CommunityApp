@@ -8,8 +8,9 @@ import { useRecoilState } from 'recoil';
 import { menuState } from '../../atoms/menuAtom';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import SinglePost from '../SinglePost/SinglePost';
+import Header from './Header';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 const LayoutAnt: React.FC = () => {
 
@@ -54,6 +55,7 @@ const LayoutAnt: React.FC = () => {
 
   return (
     <BrowserRouter>
+    {/* <Header/> */}
     <Layout style={{height:"100vh"}}>
       <Sider
         breakpoint="lg"
