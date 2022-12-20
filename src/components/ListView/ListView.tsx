@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Avatar, Divider, List, Skeleton } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Thread } from '../../interfaces';
+import { Content } from 'antd/es/layout/layout';
+import { Link } from 'react-router-dom';
 
 
 const ListView: React.FC = () => {
@@ -34,6 +36,7 @@ const ListView: React.FC = () => {
   }, []);
 
   return (
+    <Content style={{ margin: '24px 16px 0' }}>
     <div
       id="scrollableDiv"
       style={{
@@ -56,7 +59,7 @@ const ListView: React.FC = () => {
           renderItem={(item) => (
             <List.Item key={item._id}>
               <List.Item.Meta
-                title={<a href="https://ant.design">{item.author?.nickname}</a>}
+                title={<Link to={`/posts/${item._id}`}>{item.author?.nickname}</Link>}
                 description={item.content}
               />
               {/* <div><a href="https://ant.design">자세히</a></div> */}
@@ -65,6 +68,7 @@ const ListView: React.FC = () => {
         />
       </InfiniteScroll>
     </div>
+    </Content>
   );
 };
 
