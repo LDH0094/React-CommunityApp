@@ -131,8 +131,8 @@ const LogIn: React.FC<LogInProps> = () => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-//authToken.token === ""
-  if (false) {
+//
+  if (authToken.token === "") {
     return (
       <Content style={{ margin: "30px 16px 0" }}>
         {contextHolder}
