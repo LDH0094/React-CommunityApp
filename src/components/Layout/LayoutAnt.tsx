@@ -9,6 +9,7 @@ import { menuState } from '../../atoms/menuAtom';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import SinglePost from '../SinglePost/SinglePost';
 import Header from './Header';
+import LogIn from '../User/LogIn';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -99,7 +100,7 @@ const LayoutAnt: React.FC = () => {
             <Route path='/' element={ <ListView/>}/>
             <Route path='/QT/' element={<div>QT</div>}/>
             <Route path='/settings/*' element={ <div>settings</div>}/>
-            <Route path='/users/*' element={ <div>Users</div>}/>
+            <Route path='/users/*' element={ <LogIn/>}/>
             <Route path='/posts/:id' element={ <div><SinglePost/></div>}/>
         </Routes>
       </Layout>
