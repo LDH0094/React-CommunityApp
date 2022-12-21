@@ -136,7 +136,7 @@ const LogIn: React.FC<LogInProps> = () => {
     return (
       <Content style={{ margin: "30px 16px 0" }}>
         {contextHolder}
-        <Card>
+        <Card style={{width: 'flex'}}>
           <Tabs
             defaultActiveKey="1"
             items={[
@@ -146,7 +146,7 @@ const LogIn: React.FC<LogInProps> = () => {
                 children: (
                   <Form
                     name="login"
-                    labelCol={{ span: 8 }}
+                    labelCol={{ span: 5}}
                     wrapperCol={{ span: 16 }}
                     initialValues={{ remember: true }}
                     onFinish={onFinishLogIn}
@@ -182,12 +182,12 @@ const LogIn: React.FC<LogInProps> = () => {
                     <Form.Item
                       name="remember"
                       valuePropName="checked"
-                      wrapperCol={{ offset: 8, span: 16 }}
+                      wrapperCol={{ offset: 5, span: 16 }}
                     >
                       <Checkbox>다음도 기억해주세요!</Checkbox>
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                    <Form.Item wrapperCol={{ offset: 5, span: 16 }}>
                       <Button type="primary" htmlType="submit">
                         확인
                       </Button>
@@ -201,7 +201,7 @@ const LogIn: React.FC<LogInProps> = () => {
                 children: (
                   <Form
                     name="signup"
-                    labelCol={{ span: 8 }}
+                    labelCol={{ span: 5 }}
                     wrapperCol={{ span: 16 }}
                     initialValues={{ remember: true }}
                     onFinish={onFinishSignUp}
@@ -274,7 +274,7 @@ const LogIn: React.FC<LogInProps> = () => {
                       <Input.Password />
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ span: 16 }}>
+                    <Form.Item wrapperCol={{ offset: 5, span: 16 }}>
                       <Button type="primary" htmlType="submit">
                         확인
                       </Button>

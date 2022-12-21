@@ -21,3 +21,10 @@ export type Thread = {
     author_id: string;
     date: Date;
   }
+
+  export type Member = {
+    id: string;
+    username: string;
+    nickname: string;
+    email: string;
+  }
