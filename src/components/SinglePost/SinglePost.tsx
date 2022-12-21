@@ -1,7 +1,7 @@
 import { Card, Divider, List, Skeleton, Space } from "antd";
 import { Content } from "antd/es/layout/layout";
 import "../../index.css";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Link, useParams } from "react-router-dom";
 import { Comment, Thread } from "../../interfaces";
@@ -14,7 +14,7 @@ const SinglePost: React.FC<SinglePostProps> = () => {
   const [data, setData] = useState<Thread>();
   const [comments, setComment] = useState<Comment[]>([]);
 
-  const loadPost = () => {
+  const loadPost = useCallback(async () => {
     if (loading) {
       return;
     }
@@ -29,7 +29,7 @@ const SinglePost: React.FC<SinglePostProps> = () => {
       .catch(() => {
         setLoading(false);
       });
-  };
+  }, []);
 
   useEffect(() => {
     loadPost();
@@ -51,7 +51,7 @@ const SinglePost: React.FC<SinglePostProps> = () => {
             <p>{data?.content}</p>
           </Card>
           <div className="box"></div>
-          <UploadComment/>
+          <UploadComment afterCommentsCreated={loadPost} />
           <Content >
             <List
               dataSource={comments}
