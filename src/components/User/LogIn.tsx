@@ -6,6 +6,7 @@ import axios from "axios";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { AuthState, authState } from "../../atoms/authToken";
 import UserPage from "./UserPage";
+import ListView from "../ListView/ListView";
 
 type LogInProps = {};
 
@@ -90,18 +91,18 @@ const LogIn: React.FC<LogInProps> = () => {
       );
       // setting tokens
       const authTokenUpdate: AuthState = res.data.data;
-      setAuthToken(authTokenUpdate);
-
+    
       console.log(res.data.data);
       setLoading(false);
       messageApi.open({
         key,
         type: "success",
         content: "로그인 완료",
+        duration: 1,
       });
-    //   setTimeout(() => {
-    //     window.location.reload();
-    //   }, 1000);
+      setTimeout(() => {
+        setAuthToken(authTokenUpdate);
+      }, 1000);
 
       console.log("auth: ", authToken);
     } catch (error: any) {
@@ -113,6 +114,7 @@ const LogIn: React.FC<LogInProps> = () => {
         content: errorMessage,
         duration: 2,
       });
+  
 
       setLoading(false);
     }
@@ -288,7 +290,7 @@ const LogIn: React.FC<LogInProps> = () => {
       </Content>
     );
   } else {
-    return <UserPage/>
+    return <ListView/>
   }
 };
 export default LogIn;

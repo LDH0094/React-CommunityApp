@@ -46,7 +46,7 @@ const UploadComment:React.FC<UploadCommentProps> = ({afterCommentsCreated}: Uplo
 
         const headers = {
             'Content-Type' : 'application/json',
-            'Authorization' : authToken.token
+            'Authorization' : 'Bearer ' + authToken.token
             // 'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFhYWFhIiwic3ViIjoiNjM4MDRlYzBkNDEyNTJiYmMzMmNjOWM1IiwiaWF0IjoxNjY5NTQ3MDk5LCJleHAiOjE3MDExMDQ2OTl9.4u2D5ZVHjFpSEOUi6bNbsd5S8Q35YJAGGb9L-0Cjol8'
         }
         console.log(id);
