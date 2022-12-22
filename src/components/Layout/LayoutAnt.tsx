@@ -57,7 +57,7 @@ const LayoutAnt: React.FC = () => {
   return (
     <BrowserRouter>
       {/* <Header/> */}
-      <Layout style={{ height: "100vh" }}>
+      <Layout style={{ height: "flex" }}>
         <Sider
           breakpoint="lg"
           collapsedWidth="0"
