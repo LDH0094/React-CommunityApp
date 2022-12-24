@@ -6,6 +6,9 @@ import { Content } from "antd/es/layout/layout";
 import { Link } from "react-router-dom";
 import SizedPragraph from "../../common/SizedPragraph";
 import { NowDate } from "../../common/DateDisplay";
+import CreatePost from "../CreatePost/CreatePost";
+
+
 const { Text } = Typography;
 const ListView: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -15,6 +18,9 @@ const ListView: React.FC = () => {
 
   // for text related:
   const [ellipsis, setEllipsis] = useState(true);
+
+
+
 
   const loadMoreData = () => {
     if (loading) {
@@ -44,7 +50,7 @@ const ListView: React.FC = () => {
         <div
           id="scrollableDiv"
           style={{
-            height: 850,
+            height: "100vh",
             overflow: "auto",
             padding: "0 16px",
           }}
@@ -60,7 +66,14 @@ const ListView: React.FC = () => {
             scrollableTarget="scrollableDiv"
           >
             <List
-              header={<h1>자유게시판 ⭐️</h1>}
+              header={
+                <>
+                  <Space align="center">
+                    <h1>자유게시판 ⭐️</h1>
+                    <CreatePost/>
+                  </Space>
+                </>
+              }
               dataSource={data}
               renderItem={(item) => (
                 <List.Item key={item._id}>
