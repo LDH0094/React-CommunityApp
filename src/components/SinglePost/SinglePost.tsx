@@ -8,7 +8,6 @@ import { Comment, Thread } from "../../interfaces";
 import UploadComment from "./UploadComment";
 import { NowDate } from "../../common/DateDisplay";
 
-
 const { Text } = Typography;
 
 type SinglePostProps = {};
@@ -56,6 +55,7 @@ const SinglePost: React.FC<SinglePostProps> = () => {
           <div className="box"></div>
           <UploadComment afterCommentsCreated={loadPost} />
           <List
+            locale={{ emptyText: "불러올 댓글이 없습니다. 🥲" }}
             style={{ width: "100%", height: "100%" }}
             dataSource={comments}
             renderItem={(item) => (
@@ -64,8 +64,10 @@ const SinglePost: React.FC<SinglePostProps> = () => {
                   title={
                     <>
                       <Space>
-                      {item.author}
-                      <Text type="secondary">{NowDate(new Date(item.date))}</Text>
+                        {item.author}
+                        <Text type="secondary">
+                          {NowDate(new Date(item.date))}
+                        </Text>
                       </Space>
                     </>
                   }
