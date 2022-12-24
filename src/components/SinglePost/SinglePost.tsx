@@ -39,7 +39,7 @@ const SinglePost: React.FC<SinglePostProps> = () => {
     <div
       id="scrollableDiv"
       style={{
-        height: 600,
+        height: '100vh',
         overflow: "auto",
         padding: "0 16px",
         border: "1px solid rgba(255, 255, 255, 0.35)",
