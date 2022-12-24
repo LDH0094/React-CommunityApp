@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Divider, List, Skeleton } from "antd";
+import { Typography, Divider, List, Skeleton, Col, Row } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Thread } from "../../interfaces";
 import { Content } from "antd/es/layout/layout";
 import { Link } from "react-router-dom";
-
+import SizedPragraph from "../../common/SizedPragraph";
+const { Text } = Typography;
 const ListView: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Thread[]>([]);
   const [limit, setLimit] = useState([]);
   const [page, setPage] = useState(0);
+
+  // for text related:
+  const [ellipsis, setEllipsis] = useState(true);
 
   const loadMoreData = () => {
     if (loading) {
@@ -35,7 +39,7 @@ const ListView: React.FC = () => {
 
   return (
     <>
-      <Content style={{margin: "0px 10px"}}>
+      <Content style={{ margin: "0px 10px" }}>
         <div
           id="scrollableDiv"
           style={{
@@ -55,19 +59,21 @@ const ListView: React.FC = () => {
             scrollableTarget="scrollableDiv"
           >
             <List
-            header={<h1>자유게시판</h1>}
+              header={<h1>자유게시판 ⭐️</h1>}
               dataSource={data}
               renderItem={(item) => (
                 <List.Item key={item._id}>
                   <List.Item.Meta
                     title={
-                      <Link to={`/posts/${item._id}`}>
-                        {item.author?.nickname}
-                      </Link>
+                      <>
+                        <Text mark>{item.author?.nickname+"# "} </Text>
+                        <Link to={`/posts/${item._id}`}>{item.title}</Link>
+                      </>
                     }
-                    description={item.content}
+                    description={
+                      <SizedPragraph ellipsis={ellipsis} text={item.content} />
+                    }
                   />
-                  {/* <div><a href="https://ant.design">자세히</a></div> */}
                 </List.Item>
               )}
             />
