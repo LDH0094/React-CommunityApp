@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Divider, List, Skeleton } from "antd";
+import { Typography, Divider, List, Skeleton, Space } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Thread } from "../../interfaces";
 import { Content } from "antd/es/layout/layout";
 import { Link } from "react-router-dom";
 import SizedPragraph from "../../common/SizedPragraph";
+import { NowDate } from "../../common/DateDisplay";
 
 const { Text } = Typography;
-
 
 const QT: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -64,22 +64,29 @@ const QT: React.FC = () => {
             <List
               header={<h1>큐티 게시판 🦊</h1>}
               dataSource={data}
-              renderItem={(item) => (
-                <List.Item key={item._id}>
-                  <List.Item.Meta
-                    title={
-                      <>
-                        <Text mark>{item.author?.nickname+"# "} </Text>
-                        <Link to={`/posts/${item._id}`}>{item.title}</Link>
-                      </>
-                    }
-                    description={
-                      <SizedPragraph ellipsis={ellipsis} text={item.content} />
-                    }
-                  />
-                
-                </List.Item>
-              )}
+              renderItem={(item) => {
+                return (
+                  <List.Item key={item._id}>
+                    <List.Item.Meta
+                      title={
+                        <>
+                          <Space>
+                            <Text mark>{item.author?.nickname + "# "} </Text>
+                            <Link style={{color: 'black'}} to={`/posts/${item._id}`}>{item.title}</Link>
+                            <Text type="secondary">{NowDate(item.date)}</Text>
+                          </Space>
+                        </>
+                      }
+                      description={
+                        <SizedPragraph
+                          ellipsis={ellipsis}
+                          text={item.content}
+                        />
+                      }
+                    />
+                  </List.Item>
+                );
+              }}
             />
           </InfiniteScroll>
         </div>

@@ -1,4 +1,4 @@
-import { Card, Divider, List, Skeleton, Space } from "antd";
+import { Card, Typography, List, Skeleton, Space } from "antd";
 import { Content } from "antd/es/layout/layout";
 import "../../index.css";
 import React, { useCallback, useEffect, useState } from "react";
@@ -6,6 +6,10 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Link, useParams } from "react-router-dom";
 import { Comment, Thread } from "../../interfaces";
 import UploadComment from "./UploadComment";
+import { NowDate } from "../../common/DateDisplay";
+
+
+const { Text } = Typography;
 
 type SinglePostProps = {};
 const SinglePost: React.FC<SinglePostProps> = () => {
@@ -52,22 +56,21 @@ const SinglePost: React.FC<SinglePostProps> = () => {
           <div className="box"></div>
           <UploadComment afterCommentsCreated={loadPost} />
           <List
-          style={{ width: "100%", height: "100%" }}
+            style={{ width: "100%", height: "100%" }}
             dataSource={comments}
             renderItem={(item) => (
               <List.Item key={item.author_id}>
-                <Card
-                  style={{ width: "100%", height: "100%" }}
-                  headStyle={{ backgroundColor: "#E6ECF0" }}
-                  bodyStyle={{ padding: "15px" }}
-                  type="inner"
-                >
-                  <div style={{ height: "100%", width: "100%" }}>
-                    <p>{item.author}</p>
-                    <p>{item.content}</p>
-                  </div>
-                </Card>
-                {/* <div><a href="https://ant.design">자세히</a></div> */}
+                <List.Item.Meta
+                  title={
+                    <>
+                      <Space>
+                      {item.author}
+                      <Text type="secondary">{NowDate(new Date(item.date))}</Text>
+                      </Space>
+                    </>
+                  }
+                  description={item.content}
+                />
               </List.Item>
             )}
           />

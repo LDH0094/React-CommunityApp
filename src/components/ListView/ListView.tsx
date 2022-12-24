@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Divider, List, Skeleton, Col, Row } from "antd";
+import { Typography, Divider, List, Skeleton, Col, Row, Space } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Thread } from "../../interfaces";
 import { Content } from "antd/es/layout/layout";
 import { Link } from "react-router-dom";
 import SizedPragraph from "../../common/SizedPragraph";
+import { NowDate } from "../../common/DateDisplay";
 const { Text } = Typography;
 const ListView: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -66,8 +67,16 @@ const ListView: React.FC = () => {
                   <List.Item.Meta
                     title={
                       <>
-                        <Text mark>{item.author?.nickname+"# "} </Text>
-                        <Link to={`/posts/${item._id}`}>{item.title}</Link>
+                        <Space>
+                          <Text mark>{item.author?.nickname + "# "} </Text>
+                          <Link
+                            style={{ color: "black" }}
+                            to={`/posts/${item._id}`}
+                          >
+                            {item.title}
+                          </Link>
+                          <Text type="secondary">{NowDate(item.date)}</Text>
+                        </Space>
                       </>
                     }
                     description={

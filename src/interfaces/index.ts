@@ -4,7 +4,7 @@ export type Thread = {
     category?: string
     comments?: string
     content?: string
-    date?: Date
+    date: Date
     title?: string
     upvotes?: string[]
   
