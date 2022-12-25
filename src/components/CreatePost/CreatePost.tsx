@@ -1,11 +1,23 @@
 import {
   CommentOutlined,
   CustomerServiceOutlined,
+  DownOutlined,
   EditOutlined,
   PlusOutlined,
   SmallDashOutlined,
 } from "@ant-design/icons";
-import { Col, FloatButton, Input, message, Modal, Row, Space } from "antd";
+import {
+  Col,
+  Dropdown,
+  FloatButton,
+  Input,
+  MenuProps,
+  message,
+  Modal,
+  Row,
+  Space,
+  Typography,
+} from "antd";
 import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
@@ -16,6 +28,7 @@ type CreatePostProps = {};
 const CreatePost: React.FC<CreatePostProps> = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [open, setOpen] = useState(false);
+  const [selectItem, setSelecItem] = useState('게시판 목록')
   const authToken = useRecoilValue(authState);
 
   const checkAndOpenModal = () => {
@@ -43,18 +56,55 @@ const CreatePost: React.FC<CreatePostProps> = () => {
     });
   };
 
+  // select item here
+
+  const items: MenuProps["items"] = [
+    {
+      key: "1",
+      label: "자유 게시판",
+      onClick: ()=>{
+        setSelecItem('자유 게시판')
+      }
+    },
+    {
+      key: "2",
+      label: "QT 나눔",
+      onClick: ()=>{
+        setSelecItem('QT 나눔')
+      }
+    },
+  ];
+
   return (
     <>
       {contextHolder}
       <Modal
-        title="항상 책임있는 글쓰기~"
+        title={
+          <>
+            <h3>항상 책임있는 글쓰기~</h3>
+            <Dropdown
+              menu={{
+                items,
+                selectable: true,
+                
+              }}
+            >
+              <Typography.Link>
+                <Space>
+                  {selectItem}
+                  <DownOutlined />
+                </Space>
+              </Typography.Link>
+            </Dropdown>
+          </>
+        }
         centered
         open={open}
         onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}
         width={1000}
       >
-        <Space direction="vertical" style={{ display: 'flex' }}>
+        <Space direction="vertical" style={{ display: "flex" }}>
           <Input placeholder="제목을 써주세요!" maxLength={17} />
           <TextArea
             rows={6}
@@ -64,6 +114,7 @@ const CreatePost: React.FC<CreatePostProps> = () => {
         </Space>
       </Modal>
 
+    
       <FloatButton.Group
         trigger="click"
         type="primary"
