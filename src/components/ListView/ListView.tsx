@@ -8,7 +8,6 @@ import SizedPragraph from "../../common/SizedPragraph";
 import { NowDate } from "../../common/DateDisplay";
 import CreatePost from "../CreatePost/CreatePost";
 
-
 const { Text } = Typography;
 const ListView: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -18,9 +17,6 @@ const ListView: React.FC = () => {
 
   // for text related:
   const [ellipsis, setEllipsis] = useState(true);
-
-
-
 
   const loadMoreData = () => {
     if (loading) {
@@ -47,6 +43,7 @@ const ListView: React.FC = () => {
   return (
     <>
       <Content style={{ margin: "0px 10px" }}>
+        <CreatePost/>
         <div
           id="scrollableDiv"
           style={{
@@ -66,14 +63,7 @@ const ListView: React.FC = () => {
             scrollableTarget="scrollableDiv"
           >
             <List
-              header={
-                <>
-                  <Space align="center">
-                    <h1>자유게시판 ⭐️</h1>
-                    <CreatePost/>
-                  </Space>
-                </>
-              }
+              header={<h1>자유게시판 ⭐️</h1>}
               dataSource={data}
               renderItem={(item) => (
                 <List.Item key={item._id}>

@@ -17,6 +17,7 @@ import Header from "./Header";
 import LogIn from "../User/LogIn";
 import { authState, AuthState } from "../../atoms/authToken";
 import QT from "../QT/QT";
+import Notification from "../Notification/Notification";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -82,8 +83,8 @@ const LayoutAnt: React.FC = () => {
             </Menu.Item>
             <Menu.Item key="3">
               <SettingFilled />
-              <span>설정</span>
-              <Link to="/settings" />
+              <span>공지</span>
+              <Link to="/notifications" />
             </Menu.Item>
             {/* // if token is empty set user to login */}
             {authToken.token == "" && (
@@ -101,7 +102,7 @@ const LayoutAnt: React.FC = () => {
           <Routes>
             <Route path="/" element={<ListView />} />
             <Route path="/QT/" element={<QT/>} />
-            <Route path="/settings/*" element={<div>settings</div>} />
+            <Route path="/notifications/*" element={<Notification/>} />
             <Route path="/users/*" element={<LogIn />} />
             <Route
               path="/posts/:id"
