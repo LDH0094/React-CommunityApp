@@ -81,7 +81,7 @@ const CreatePost: React.FC<CreatePostProps> = () => {
       <Modal
         title={
           <>
-            <h3>항상 책임있는 글쓰기~</h3>
+            <h3>항상 책임있는 글쓰기 약속해요~</h3>
             <Dropdown
               menu={{
                 items,
