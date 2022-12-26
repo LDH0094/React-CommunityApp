@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Typography, Divider, List, Skeleton, Col, Row, Space } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Thread } from "../../interfaces";
@@ -36,6 +36,24 @@ const ListView: React.FC = () => {
       });
   };
 
+  const initLoadCallBack = useCallback(() => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    fetch(`http://localhost:8000/thread/${page}`)
+      .then((res) => res.json())
+      .then((body) => {
+        setData([...data, ...body.data]);
+        setLimit(body.data);
+        setPage(page + 1);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
+  },[]);
+
   useEffect(() => {
     loadMoreData();
   }, []);
@@ -43,7 +61,7 @@ const ListView: React.FC = () => {
   return (
     <>
       <Content style={{ margin: "0px 10px" }}>
-        <CreatePost/>
+        <CreatePost afterPostCreated={initLoadCallBack}/>
           <InfiniteScroll
             dataLength={data.length}
             next={loadMoreData}

@@ -15,12 +15,6 @@ const SizedPragraph: React.FC<SizedPragraphProps> = ({ellipsis, text}: SizedPrag
       }
     >
       {text}
-      Ant Design, a design language for background applications, is refined by Ant UED Team. Ant
-        Design, a design language for background applications, is refined by Ant UED Team. Ant
-        Design, a design language for background applications, is refined by Ant UED Team. Ant
-        Design, a design language for background applications, is refined by Ant UED Team. Ant
-        Design, a design language for background applications, is refined by Ant UED Team. Ant
-        Design, a design language for background applications, is refined by Ant UED Team
     </Paragraph>
   );
 };
