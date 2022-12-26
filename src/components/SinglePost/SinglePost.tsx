@@ -22,7 +22,7 @@ const SinglePost: React.FC<SinglePostProps> = () => {
       return;
     }
     setLoading(true);
-    fetch(`http://localhost:8000/thread/thread/${id}`)
+    fetch(process.env.REACT_APP_HOST+`thread/thread/${id}`)
       .then((res) => res.json())
       .then((body) => {
         setData(body.data);

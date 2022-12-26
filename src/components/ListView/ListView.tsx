@@ -24,7 +24,7 @@ const ListView: React.FC = () => {
       return;
     }
     setLoading(true);
-    fetch(`http://localhost:8000/thread/${page}`)
+    fetch(process.env.REACT_APP_HOST+`thread/${page}`)
       .then((res) => res.json())
       .then((body) => {
         setData([...data, ...body.data]);

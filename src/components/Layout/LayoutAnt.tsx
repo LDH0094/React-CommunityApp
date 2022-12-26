@@ -58,6 +58,7 @@ const LayoutAnt: React.FC = () => {
   return (
     <BrowserRouter>
       {/* <Header/> */}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
       <Layout style={{minHeight:"100vh", minWidth:'100vw'}}>
         <Sider
           breakpoint="lg"

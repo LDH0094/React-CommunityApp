@@ -131,7 +131,7 @@ const CreatePost: React.FC<CreatePostProps> = ({afterPostCreated}: CreatePostPro
     }
 
     try {
-      const res = await axios.post(`http://localhost:8000/thread`, 
+      const res = await axios.post(process.env.REACT_APP_HOST+`thread`, 
           data    // price라는 이름의 객체에 price 변수에 담은 값 전달
       ,{
           headers: headers // headers에 headers 객체 전달
