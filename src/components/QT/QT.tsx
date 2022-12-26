@@ -25,7 +25,7 @@ const QT: React.FC = () => {
       return;
     }
     setLoading(true);
-    fetch(process.env.REACT_APP_HOST+`thread/category/qt/${page}`)
+    fetch(process.env.REACT_APP_HOST + `thread/category/qt/${page}`)
       .then((res) => res.json())
       .then((body) => {
         setData([...data, ...body.data]);
@@ -34,9 +34,8 @@ const QT: React.FC = () => {
         setLoading(false);
       })
       .catch(() => {
-        setLoading(false);  
+        setLoading(false);
         setHasReachedEnd(true);
-      
       });
   };
 
@@ -57,7 +56,7 @@ const QT: React.FC = () => {
         setLoading(false);
         setHasReachedEnd(true);
       });
-  },[]);
+  }, []);
 
   useEffect(() => {
     loadMoreData();
@@ -66,15 +65,15 @@ const QT: React.FC = () => {
   return (
     <>
       <Content style={{ margin: "0px 10px" }}>
+        <CreatePost afterPostCreated={initLoadCallBack} />
         <div
           id="scrollableDiv"
           style={{
-            height: '100vh',
+            height: "100vh",
             overflow: "auto",
             padding: "0 16px",
           }}
         >
-          <CreatePost afterPostCreated={initLoadCallBack}/>
           <InfiniteScroll
             dataLength={data.length}
             next={loadMoreData}
@@ -96,7 +95,12 @@ const QT: React.FC = () => {
                         <>
                           <Space>
                             <Text mark>{item.author?.nickname + "# "} </Text>
-                            <Link style={{color: 'black'}} to={`/posts/${item._id}`}>{item.title}</Link>
+                            <Link
+                              style={{ color: "black" }}
+                              to={`/posts/${item._id}`}
+                            >
+                              {item.title}
+                            </Link>
                             <Text type="secondary">{NowDate(item.date)}</Text>
                           </Space>
                         </>
@@ -123,4 +127,3 @@ export default QT;
 function useCallBack(arg0: () => void, arg1: never[]) {
   throw new Error("Function not implemented.");
 }
-

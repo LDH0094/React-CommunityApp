@@ -24,7 +24,7 @@ const ListView: React.FC = () => {
       return;
     }
     setLoading(true);
-    fetch(process.env.REACT_APP_HOST+`thread/${page}`)
+    fetch(process.env.REACT_APP_HOST + `thread/${page}`)
       .then((res) => res.json())
       .then((body) => {
         setData([...data, ...body.data]);
@@ -43,7 +43,7 @@ const ListView: React.FC = () => {
       return;
     }
     setLoading(true);
-    fetch(process.env.REACT_APP_HOST+`thread/${page}`)
+    fetch(process.env.REACT_APP_HOST + `thread/${page}`)
       .then((res) => res.json())
       .then((body) => {
         setData([...data, ...body.data]);
@@ -55,7 +55,7 @@ const ListView: React.FC = () => {
         setLoading(false);
         setHasReachedEnd(true);
       });
-  },[]);
+  }, []);
 
   useEffect(() => {
     loadMoreData();
@@ -64,11 +64,19 @@ const ListView: React.FC = () => {
   return (
     <>
       <Content style={{ margin: "0px 10px" }}>
-        <CreatePost afterPostCreated={initLoadCallBack}/>
+        <CreatePost afterPostCreated={initLoadCallBack} />
+        <div
+          id="scrollableDiv"
+          style={{
+            height: "100vh",
+            overflow: "auto",
+            padding: "0 16px",
+          }}
+        >
           <InfiniteScroll
             dataLength={data.length}
             next={loadMoreData}
-            hasMore={limit.length > 9  && !hasReachedEnd}
+            hasMore={limit.length > 9 && !hasReachedEnd}
             loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
             endMessage={
               <Divider plain>더 이상 가져올 게시글이 없네요... 🤐</Divider>
@@ -103,7 +111,7 @@ const ListView: React.FC = () => {
               )}
             />
           </InfiniteScroll>
-
+        </div>
       </Content>
     </>
   );
