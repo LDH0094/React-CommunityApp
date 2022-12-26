@@ -136,7 +136,7 @@ const LogIn: React.FC<LogInProps> = () => {
 //
   if (authToken.token === "") {
     return (
-      <Content style={{ margin: "0px 10px" }}>
+      <Content style={{ margin: "25px 20px" }}>
         {contextHolder}
         <Card>
           <Tabs
