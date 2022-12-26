@@ -44,14 +44,6 @@ const ListView: React.FC = () => {
     <>
       <Content style={{ margin: "0px 10px" }}>
         <CreatePost/>
-        <div
-          id="scrollableDiv"
-          style={{
-            height: "100vh",
-            overflow: "auto",
-            padding: "0 16px",
-          }}
-        >
           <InfiniteScroll
             dataLength={data.length}
             next={loadMoreData}
@@ -90,7 +82,7 @@ const ListView: React.FC = () => {
               )}
             />
           </InfiniteScroll>
-        </div>
+
       </Content>
     </>
   );

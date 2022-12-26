@@ -136,9 +136,9 @@ const LogIn: React.FC<LogInProps> = () => {
 //
   if (authToken.token === "") {
     return (
-      <Content style={{ margin: "30px 16px 0" }}>
+      <Content style={{ margin: "0px 10px" }}>
         {contextHolder}
-        <Card style={{width: 'flex'}}>
+        <Card>
           <Tabs
             defaultActiveKey="1"
             items={[
@@ -153,7 +153,7 @@ const LogIn: React.FC<LogInProps> = () => {
                     initialValues={{ remember: true }}
                     onFinish={onFinishLogIn}
                     onFinishFailed={onFinishFailed}
-                    autoComplete="off"
+                    autoComplete="on"
                   >
                     <Form.Item
                       label="아이디"
@@ -184,12 +184,12 @@ const LogIn: React.FC<LogInProps> = () => {
                     <Form.Item
                       name="remember"
                       valuePropName="checked"
-                      wrapperCol={{ offset: 5, span: 16 }}
+             
                     >
                       <Checkbox>다음도 기억해주세요!</Checkbox>
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 5, span: 16 }}>
+                    <Form.Item >
                       <Button type="primary" htmlType="submit">
                         확인
                       </Button>
@@ -276,7 +276,7 @@ const LogIn: React.FC<LogInProps> = () => {
                       <Input.Password />
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 5, span: 16 }}>
+                    <Form.Item>
                       <Button type="primary" htmlType="submit">
                         확인
                       </Button>
