@@ -14,6 +14,7 @@ const ListView: React.FC = () => {
   const [data, setData] = useState<Thread[]>([]);
   const [limit, setLimit] = useState([]);
   const [page, setPage] = useState(0);
+  const [hasReachedEnd, setHasReachedEnd] = useState(false);
 
   // for text related:
   const [ellipsis, setEllipsis] = useState(true);
@@ -33,6 +34,7 @@ const ListView: React.FC = () => {
       })
       .catch(() => {
         setLoading(false);
+        setHasReachedEnd(true);
       });
   };
 
@@ -41,7 +43,7 @@ const ListView: React.FC = () => {
       return;
     }
     setLoading(true);
-    fetch(`http://localhost:8000/thread/${page}`)
+    fetch(process.env.REACT_APP_HOST+`thread/${page}`)
       .then((res) => res.json())
       .then((body) => {
         setData([...data, ...body.data]);
@@ -51,6 +53,7 @@ const ListView: React.FC = () => {
       })
       .catch(() => {
         setLoading(false);
+        setHasReachedEnd(true);
       });
   },[]);
 
@@ -65,7 +68,7 @@ const ListView: React.FC = () => {
           <InfiniteScroll
             dataLength={data.length}
             next={loadMoreData}
-            hasMore={limit.length > 9}
+            hasMore={limit.length > 9  && !hasReachedEnd}
             loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
             endMessage={
               <Divider plain>더 이상 가져올 게시글이 없네요... 🤐</Divider>

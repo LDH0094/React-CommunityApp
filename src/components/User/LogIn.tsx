@@ -86,7 +86,7 @@ const LogIn: React.FC<LogInProps> = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        `http://localhost:8000/members/signIn`,
+        process.env.REACT_APP_HOST+`members/signIn`,
         values
       );
       // setting tokens
