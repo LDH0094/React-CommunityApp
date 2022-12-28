@@ -9,7 +9,7 @@ import UserPage from "./UserPage";
 import ListView from "../ListView/ListView";
 
 type LogInProps = {};
-
+// TODO: UI LOGIN 할떄 깨지는거 수정해야함
 const LogIn: React.FC<LogInProps> = () => {
   const [loading, setLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();

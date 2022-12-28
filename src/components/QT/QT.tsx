@@ -44,7 +44,7 @@ const QT: React.FC = () => {
       return;
     }
     setLoading(true);
-    fetch(`http://localhost:8000/thread/category/qt/${page}`)
+    fetch(process.env.REACT_APP_HOST + `thread/category/qt/${page}`)
       .then((res) => res.json())
       .then((body) => {
         setData([...data, ...body.data]);
