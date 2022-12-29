@@ -102,11 +102,12 @@ const QT: React.FC = () => {
                       title={
                         <>
                           <Space>
-                            <Text mark>{item.author?.nickname + "# "} </Text>
                             <Link
                               style={{ color: "black" }}
                               to={`/posts/${item._id}`}
                             >
+                              <Text mark>{item.author?.nickname + "# "} </Text>
+
                               {item.title}
                             </Link>
                             <Text type="secondary">{NowDate(item.date)}</Text>

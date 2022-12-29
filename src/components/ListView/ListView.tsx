@@ -87,10 +87,10 @@ const ListView: React.FC = () => {
             <List
               header={
                 <>
-                <Row justify="space-between" align='middle'>
-                  <h1>자유게시판 ⭐️</h1>
-                  <BasicNavigationMenu/>
-                </Row>
+                  <Row justify="space-between" align="middle">
+                    <h1>자유게시판 ⭐️</h1>
+                    <BasicNavigationMenu />
+                  </Row>
                 </>
               }
               dataSource={data}
@@ -100,11 +100,12 @@ const ListView: React.FC = () => {
                     title={
                       <>
                         <Space>
-                          <Text mark>{item.author?.nickname + "# "} </Text>
                           <Link
                             style={{ color: "black" }}
                             to={`/posts/${item._id}`}
                           >
+                            <Text mark>{item.author?.nickname + "# "} </Text>
+
                             {item.title}
                           </Link>
                           <Text type="secondary">{NowDate(item.date)}</Text>
