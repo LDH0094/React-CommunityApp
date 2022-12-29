@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import SizedPragraph from "../../common/SizedPragraph";
 import { NowDate } from "../../common/DateDisplay";
 import CreatePost from "../CreatePost/CreatePost";
+import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
 
 const { Text } = Typography;
 const ListView: React.FC = () => {
@@ -84,7 +85,14 @@ const ListView: React.FC = () => {
             scrollableTarget="scrollableDiv"
           >
             <List
-              header={<h1>자유게시판 ⭐️</h1>}
+              header={
+                <>
+                <Row justify="space-between" align='middle'>
+                  <h1>자유게시판 ⭐️</h1>
+                  <BasicNavigationMenu/>
+                </Row>
+                </>
+              }
               dataSource={data}
               renderItem={(item) => (
                 <List.Item key={item._id}>
