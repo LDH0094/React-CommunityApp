@@ -5,7 +5,7 @@ import {
   StarFilled,
   HomeOutlined,
 } from "@ant-design/icons";
-import { Divider, Image, Layout, Menu, theme } from "antd";
+import { Divider, FloatButton, Image, Layout, Menu, theme } from "antd";
 import type { MenuProps } from "antd";
 import ListView from "../ListView/ListView";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -56,7 +56,7 @@ const LayoutAnt: React.FC = () => {
   return (
     <BrowserRouter>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-      <Layout style={{minHeight:"100vh", minWidth:'100vw'}}>
+      <Layout style={{minHeight:"100vh", minWidth:'100vw'}}>    
           <Routes>
             <Route path="/" element={<ListView />} />
             <Route path="/QT/" element={<QT/>} />
