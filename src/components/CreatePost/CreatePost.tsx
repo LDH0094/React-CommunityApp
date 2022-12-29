@@ -4,11 +4,8 @@ import {
   DownOutlined,
   EditOutlined,
   PlusOutlined,
-  SmallDashOutlined,
 } from "@ant-design/icons";
 import {
-  Button,
-  Col,
   Dropdown,
   FloatButton,
   Form,
@@ -232,7 +229,7 @@ const CreatePost: React.FC<CreatePostProps> = ({afterPostCreated}: CreatePostPro
       </Modal>
 
       {/* //end of modal form */}
-
+      
       <FloatButton.Group
         trigger="click"
         type="primary"

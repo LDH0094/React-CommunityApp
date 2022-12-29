@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Typography, Divider, List, Skeleton, Space } from "antd";
+import { Typography, Divider, List, Skeleton, Space, Row } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Thread } from "../../interfaces";
 import { Content } from "antd/es/layout/layout";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import SizedPragraph from "../../common/SizedPragraph";
 import { NowDate } from "../../common/DateDisplay";
 import CreatePost from "../CreatePost/CreatePost";
+import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
 
 const { Text } = Typography;
 
@@ -85,7 +86,14 @@ const QT: React.FC = () => {
             scrollableTarget="scrollableDiv"
           >
             <List
-              header={<h1>큐티 게시판 🦊</h1>}
+              header={
+                <>
+                  <Row justify="space-between" align="middle">
+                    <h1>큐티 게시판 🦊</h1>
+                    <BasicNavigationMenu />
+                  </Row>
+                </>
+              }
               dataSource={data}
               renderItem={(item) => {
                 return (

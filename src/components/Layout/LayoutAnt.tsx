@@ -5,24 +5,22 @@ import {
   StarFilled,
   HomeOutlined,
 } from "@ant-design/icons";
-import { Image, Layout, Menu, theme } from "antd";
-import logo from "../logo.svg";
+import { Divider, FloatButton, Image, Layout, Menu, theme } from "antd";
 import type { MenuProps } from "antd";
 import ListView from "../ListView/ListView";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { menuState } from "../../atoms/menuAtom";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import SinglePost from "../SinglePost/SinglePost";
-import Header from "./Header";
 import LogIn from "../User/LogIn";
-import { authState, AuthState } from "../../atoms/authToken";
 import QT from "../QT/QT";
 import Notification from "../Notification/Notification";
+import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
+import { Header } from "antd/es/layout/layout";
 
 const { Content, Footer, Sider } = Layout;
 
 const LayoutAnt: React.FC = () => {
-  const authToken = useRecoilValue<AuthState>(authState);
   type MenuItem = Required<MenuProps>["items"][number];
 
   function getItem(
@@ -54,52 +52,11 @@ const LayoutAnt: React.FC = () => {
 
   // States
   const [itemKey, setItemKey] = useRecoilState(menuState);
-
+ //
   return (
     <BrowserRouter>
-      {/* <Header/> */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-      <Layout style={{minHeight:"100vh", minWidth:'100vw'}}>
-        <Sider
-          breakpoint="lg"
-          collapsedWidth="0"
-          onBreakpoint={(broken) => {
-            console.log(broken);
-          }}
-          onCollapse={(collapsed, type) => {
-            console.log(collapsed, type);
-          }}
-        >
-          {/* <img src={logo} alt="Logo" />; */}
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-            <Menu.Item key="1">
-              <HomeOutlined />
-              <span>홈</span>
-              <Link to="/" />
-            </Menu.Item>
-            <Menu.Item key="2">
-              <StarFilled />
-              <span>큐티</span>
-              <Link to="/QT" />
-            </Menu.Item>
-            <Menu.Item key="3">
-              <SettingFilled />
-              <span>공지</span>
-              <Link to="/notifications" />
-            </Menu.Item>
-            {/* // if token is empty set user to login */}
-            {authToken.token == "" && (
-              <Menu.Item key="4">
-                <SmileOutlined />
-                <span>로그인/회원가입</span>
-                <Link to="/users" />
-              </Menu.Item>
-            )}
-
-          </Menu>
-        </Sider>
-        <Layout>
-          {/* <Header style={{ padding: 0, background: colorBgContainer }} > */}
+      <Layout style={{minHeight:"100vh", minWidth:'100vw'}}>    
           <Routes>
             <Route path="/" element={<ListView />} />
             <Route path="/QT/" element={<QT/>} />
@@ -114,7 +71,6 @@ const LayoutAnt: React.FC = () => {
               }
             />
           </Routes>
-        </Layout>
       </Layout>
     </BrowserRouter>
   );

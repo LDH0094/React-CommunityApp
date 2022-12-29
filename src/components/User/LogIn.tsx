@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Card, Checkbox, Form, Input, Tabs } from "antd";
+import { Button, Card, Checkbox, Form, Input, Row, Tabs } from "antd";
 import { Content } from "antd/es/layout/layout";
 import { message } from "antd";
 import axios from "axios";
@@ -8,6 +8,7 @@ import { AuthState, authState } from "../../atoms/authToken";
 import UserPage from "./UserPage";
 import ListView from "../ListView/ListView";
 import { Link, Navigate } from "react-router-dom";
+import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
 
 type LogInProps = {};
 // TODO: UI LOGIN 할떄 깨지는거 수정해야함
@@ -139,6 +140,7 @@ const LogIn: React.FC<LogInProps> = () => {
       <Content style={{ margin: "25px 20px" }}>
         {contextHolder}
         <Card>
+          <div style={{position: 'absolute', top: 10, right: 10}}><BasicNavigationMenu/></div>
           <Tabs
             defaultActiveKey="1"
             items={[
