@@ -51,7 +51,6 @@ const BasicNavigationMenu:React.FC<BasicNavigationMenuProps> = () => {
     return <Dropdown
     menu={{
       items,
-      selectable: true,
       defaultSelectedKeys: [selectedKey.itemSelected],
     }}
   >
