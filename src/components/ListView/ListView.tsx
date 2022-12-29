@@ -8,6 +8,7 @@ import SizedPragraph from "../../common/SizedPragraph";
 import { NowDate } from "../../common/DateDisplay";
 import CreatePost from "../CreatePost/CreatePost";
 import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
+import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 const ListView: React.FC = () => {
@@ -15,10 +16,15 @@ const ListView: React.FC = () => {
   const [data, setData] = useState<Thread[]>([]);
   const [limit, setLimit] = useState([]);
   const [page, setPage] = useState(0);
+  const [heartClick, setHeartClick] = useState();
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
 
   // for text related:
   const [ellipsis, setEllipsis] = useState(true);
+
+  // const onHeartClick = () => {
+  //   setHeartClick()
+  // }
 
   const loadMoreData = () => {
     if (loading) {
@@ -116,6 +122,15 @@ const ListView: React.FC = () => {
                       <SizedPragraph ellipsis={ellipsis} text={item.content} />
                     }
                   />
+                  {/* <Row align="middle">
+                    <Space>
+                      {!heartClick ? 
+                      <HeartOutlined onClick={onHeartClick} value={item._id}/> :
+                      <HeartFilled onClick={onHeartClick}/>
+                      }
+                      <div>{item.upvotes?.length}</div>
+                    </Space>
+                  </Row> */}
                 </List.Item>
               )}
             />
