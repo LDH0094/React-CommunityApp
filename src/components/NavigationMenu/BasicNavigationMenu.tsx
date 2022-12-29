@@ -1,8 +1,9 @@
 import { DownOutlined } from '@ant-design/icons';
 import { Dropdown, Typography, Space, MenuProps } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { authState } from '../../atoms/authToken';
 import { menuState } from '../../atoms/menuAtom';
 
 type BasicNavigationMenuProps = {
@@ -11,8 +12,19 @@ type BasicNavigationMenuProps = {
 
 const BasicNavigationMenu:React.FC<BasicNavigationMenuProps> = () => {
   const [selectedKey, setSelectedKey] = useRecoilState(menuState);
+  const [logIn, setLogIn] = useState(false);
+  const authToken = useRecoilValue(authState);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if(authToken.token == ""){
+        setLogIn(false);
+    }else{
+        setLogIn(true);
+    }
+  
+  }, [])
+  
   const items: MenuProps["items"] = [
     {
       key: '1',
@@ -38,9 +50,11 @@ const BasicNavigationMenu:React.FC<BasicNavigationMenuProps> = () => {
           navigate('/notifications')
         },
       },
+      
       {
         key: '4',
         label: "로그인 / 회원가입",
+        disabled: logIn,
         onClick: () => {
           setSelectedKey({itemSelected: '4'})
           navigate('/users')
