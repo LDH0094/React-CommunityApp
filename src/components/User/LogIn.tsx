@@ -7,6 +7,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { AuthState, authState } from "../../atoms/authToken";
 import UserPage from "./UserPage";
 import ListView from "../ListView/ListView";
+import { Link, Navigate } from "react-router-dom";
 
 type LogInProps = {};
 // TODO: UI LOGIN 할떄 깨지는거 수정해야함
@@ -100,9 +101,8 @@ const LogIn: React.FC<LogInProps> = () => {
         content: "로그인 완료",
         duration: 1,
       });
-      setTimeout(() => {
-        setAuthToken(authTokenUpdate);
-      }, 1000);
+
+      setAuthToken(authTokenUpdate);
 
       console.log("auth: ", authToken);
     } catch (error: any) {
@@ -290,7 +290,7 @@ const LogIn: React.FC<LogInProps> = () => {
       </Content>
     );
   } else {
-    return <ListView/>
+    return  <Navigate to={'/'}/>
   }
 };
 export default LogIn;
