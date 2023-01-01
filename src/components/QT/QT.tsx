@@ -8,6 +8,7 @@ import SizedPragraph from "../../common/SizedPragraph";
 import { NowDate } from "../../common/DateDisplay";
 import CreatePost from "../CreatePost/CreatePost";
 import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
+import { CommentOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 
@@ -121,6 +122,17 @@ const QT: React.FC = () => {
                         />
                       }
                     />
+                    <Row align="middle">
+                      <Link
+                        style={{ color: "black" }}
+                        to={`/posts/${item._id}`}
+                      >
+                        <Space>
+                          <CommentOutlined />
+                          <div>{item.comments?.length}</div>
+                        </Space>
+                      </Link>
+                    </Row>
                   </List.Item>
                 );
               }}

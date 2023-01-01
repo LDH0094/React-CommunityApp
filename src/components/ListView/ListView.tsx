@@ -8,7 +8,7 @@ import SizedPragraph from "../../common/SizedPragraph";
 import { NowDate } from "../../common/DateDisplay";
 import CreatePost from "../CreatePost/CreatePost";
 import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
-import { HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { CommentOutlined, HeartFilled, HeartOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 const ListView: React.FC = () => {
@@ -106,14 +106,11 @@ const ListView: React.FC = () => {
                     title={
                       <>
                         <Space>
-                          <Link
-                            style={{ color: "black" }}
-                            to={`/posts/${item._id}`}
-                          >
+                         
                             <Text mark>{item.author?.nickname + "# "} </Text>
 
                             {item.title}
-                          </Link>
+                    
                           <Text type="secondary">{NowDate(item.date)}</Text>
                         </Space>
                       </>
@@ -122,15 +119,17 @@ const ListView: React.FC = () => {
                       <SizedPragraph ellipsis={ellipsis} text={item.content} />
                     }
                   />
-                  {/* <Row align="middle">
+                  <Row align="middle">
+                  <Link
+                            style={{ color: "black" }}
+                            to={`/posts/${item._id}`}
+                          >
                     <Space>
-                      {!heartClick ? 
-                      <HeartOutlined onClick={onHeartClick} value={item._id}/> :
-                      <HeartFilled onClick={onHeartClick}/>
-                      }
-                      <div>{item.upvotes?.length}</div>
+                     <CommentOutlined />
+                      <div>{item.comments?.length}</div>
                     </Space>
-                  </Row> */}
+                    </Link>
+                  </Row>
                 </List.Item>
               )}
             />
