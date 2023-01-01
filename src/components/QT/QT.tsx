@@ -8,7 +8,11 @@ import SizedPragraph from "../../common/SizedPragraph";
 import { NowDate } from "../../common/DateDisplay";
 import CreatePost from "../CreatePost/CreatePost";
 import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
-import { CommentOutlined, MessageOutlined } from "@ant-design/icons";
+import {
+  CommentOutlined,
+  MessageFilled,
+  MessageOutlined,
+} from "@ant-design/icons";
 
 const { Text } = Typography;
 
@@ -128,7 +132,7 @@ const QT: React.FC = () => {
                         to={`/posts/${item._id}`}
                       >
                         <Space>
-                        <MessageOutlined />
+                          <MessageFilled />
                           <div>{item.comments?.length}</div>
                         </Space>
                       </Link>

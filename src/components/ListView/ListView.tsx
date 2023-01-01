@@ -8,7 +8,14 @@ import SizedPragraph from "../../common/SizedPragraph";
 import { NowDate } from "../../common/DateDisplay";
 import CreatePost from "../CreatePost/CreatePost";
 import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
-import { CommentOutlined, HeartFilled, HeartOutlined, MessageOutlined } from "@ant-design/icons";
+import {
+  CommentOutlined,
+  HeartFilled,
+  HeartOutlined,
+  MessageFilled,
+  MessageOutlined,
+  MessageTwoTone,
+} from "@ant-design/icons";
 
 const { Text } = Typography;
 const ListView: React.FC = () => {
@@ -106,11 +113,10 @@ const ListView: React.FC = () => {
                     title={
                       <>
                         <Space>
-                         
-                            <Text mark>{item.author?.nickname + "# "} </Text>
+                          <Text mark>{item.author?.nickname + "# "} </Text>
 
-                            {item.title}
-                    
+                          {item.title}
+
                           <Text type="secondary">{NowDate(item.date)}</Text>
                         </Space>
                       </>
@@ -120,14 +126,11 @@ const ListView: React.FC = () => {
                     }
                   />
                   <Row align="middle">
-                  <Link
-                            style={{ color: "black" }}
-                            to={`/posts/${item._id}`}
-                          >
-                    <Space>
-                      <MessageOutlined />
-                      <div>{item.comments?.length}</div>
-                    </Space>
+                    <Link style={{ color: "black" }} to={`/posts/${item._id}`}>
+                      <Space>
+                        <MessageFilled />
+                        <div>{item.comments?.length}</div>
+                      </Space>
                     </Link>
                   </Row>
                 </List.Item>
