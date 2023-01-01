@@ -8,7 +8,7 @@ import SizedPragraph from "../../common/SizedPragraph";
 import { NowDate } from "../../common/DateDisplay";
 import CreatePost from "../CreatePost/CreatePost";
 import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
-import { CommentOutlined, HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { CommentOutlined, HeartFilled, HeartOutlined, MessageOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 const ListView: React.FC = () => {
@@ -125,7 +125,7 @@ const ListView: React.FC = () => {
                             to={`/posts/${item._id}`}
                           >
                     <Space>
-                     <CommentOutlined />
+                      <MessageOutlined />
                       <div>{item.comments?.length}</div>
                     </Space>
                     </Link>
