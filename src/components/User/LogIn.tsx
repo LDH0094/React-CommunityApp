@@ -100,12 +100,11 @@ const LogIn: React.FC<LogInProps> = () => {
         key,
         type: "success",
         content: "로그인 완료",
-        duration: 1,
+        duration: 3,
       });
-
       setAuthToken(authTokenUpdate);
 
-      console.log("auth: ", authToken);
+      // console.log("auth: ", authToken);
     } catch (error: any) {
       console.log(error);
       const errorMessage = "Error " + error.response.data.message;
