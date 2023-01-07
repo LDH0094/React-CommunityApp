@@ -5,7 +5,7 @@ import {
   StarFilled,
   HomeOutlined,
 } from "@ant-design/icons";
-import { Divider, FloatButton, Image, Layout, Menu, theme } from "antd";
+import { Divider, FloatButton, Image, Layout, Menu, Row, theme } from "antd";
 import type { MenuProps } from "antd";
 import ListView from "../ListView/ListView";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -17,7 +17,7 @@ import QT from "../QT/QT";
 import Notification from "../Notification/Notification";
 import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
 import { Header } from "antd/es/layout/layout";
-
+import { ReactComponent as NativeLogo } from "../../assets/logo.svg";
 const { Content, Footer, Sider } = Layout;
 
 const LayoutAnt: React.FC = () => {
@@ -52,25 +52,34 @@ const LayoutAnt: React.FC = () => {
 
   // States
   const [itemKey, setItemKey] = useRecoilState(menuState);
- //
+  //
   return (
     <BrowserRouter>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-      <Layout style={{minHeight:"100vh", minWidth:'100vw'}}>    
-          <Routes>
-            <Route path="/" element={<ListView />} />
-            <Route path="/QT/" element={<QT/>} />
-            <Route path="/notifications/*" element={<Notification/>} />
-            <Route path="/users/*" element={<LogIn />} />
-            <Route
-              path="/posts/:id"
-              element={
-                <div>
-                  <SinglePost />
-                </div>
-              }
-            />
-          </Routes>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+      />
+      <Layout style={{ height: "100%", width: "100%" }} className="layout">
+        <Header style={{ background: "rgba(245,245,245)", padding: "0px 10px", height: "60px"}}>
+          <Row justify="space-evenly" align="middle">
+            <NativeLogo width={70} height={70} />
+            <h1>The Remnants</h1>
+          </Row>
+        </Header>
+        <Routes>
+          <Route path="/" element={<ListView />} />
+          <Route path="/QT/" element={<QT />} />
+          <Route path="/notifications/*" element={<Notification />} />
+          <Route path="/users/*" element={<LogIn />} />
+          <Route
+            path="/posts/:id"
+            element={
+              <div>
+                <SinglePost />
+              </div>
+            }
+          />
+        </Routes>
       </Layout>
     </BrowserRouter>
   );
