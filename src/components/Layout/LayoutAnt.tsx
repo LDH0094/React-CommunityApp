@@ -60,9 +60,17 @@ const LayoutAnt: React.FC = () => {
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
       />
       <Layout style={{ height: "100%", width: "100%" }} className="layout">
-        <Header style={{ background: "rgba(245,245,245)", padding: "0px 10px", height: "60px"}}>
-          <Row justify="space-evenly" align="middle">
-            <NativeLogo width={70} height={70} />
+        <Header
+          style={{
+            background: "rgba(245,245,245)",
+            padding: "0px 10px",
+            height: "60px",
+          }}
+        >
+          <Row justify="space-evenly" align="bottom">
+            <Link to={`/`}>
+              <NativeLogo width={70} height={70} />
+            </Link>
             <h1>The Remnants</h1>
           </Row>
         </Header>
