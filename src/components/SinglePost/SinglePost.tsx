@@ -42,7 +42,7 @@ const SinglePost: React.FC<SinglePostProps> = () => {
     <div
       id="scrollableDiv"
       style={{
-        height: "100vh",
+        height: "100%",
         overflow: "auto",
         padding: "0 16px",
       }}
@@ -56,7 +56,7 @@ const SinglePost: React.FC<SinglePostProps> = () => {
           <UploadComment afterCommentsCreated={loadPost} />
           <List
             locale={{ emptyText: "불러올 댓글이 없습니다. 🥲" }}
-            style={{ width: "100%", height: "100%" }}
+            style={{ width: "100%", height: "100%"}}
             dataSource={comments}
             renderItem={(item) => (
               <List.Item key={item.author_id}>
@@ -76,6 +76,8 @@ const SinglePost: React.FC<SinglePostProps> = () => {
               </List.Item>
             )}
           />
+          <div
+          style={{height: '100px'}}/>
         </div>
       </Content>
     </div>

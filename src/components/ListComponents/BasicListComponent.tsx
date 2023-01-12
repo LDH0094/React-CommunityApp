@@ -1,84 +1,26 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Typography, Divider, List, Skeleton, Col, Row, Space } from "antd";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Thread } from "../../interfaces";
+import { MessageFilled } from "@ant-design/icons";
+import { Skeleton, Divider, List, Row, Space } from "antd";
 import { Content } from "antd/es/layout/layout";
+import React, { ReactNode } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
-import SizedPragraph from "../../common/SizedPragraph";
 import { NowDate } from "../../common/DateDisplay";
+import SizedPragraph from "../../common/SizedPragraph";
 import CreatePost from "../CreatePost/CreatePost";
 import BasicNavigationMenu from "../NavigationMenu/BasicNavigationMenu";
-import {
-  CommentOutlined,
-  HeartFilled,
-  HeartOutlined,
-  MessageFilled,
-  MessageOutlined,
-  MessageTwoTone,
-} from "@ant-design/icons";
 
-const { Text } = Typography;
-const ListView: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<Thread[]>([]);
-  const [limit, setLimit] = useState([]);
-  const [page, setPage] = useState(0);
-  const [heartClick, setHeartClick] = useState();
-  const [hasReachedEnd, setHasReachedEnd] = useState(false);
+type BasicListComponentProps = {
+    loadingFunction: ReactNode;
+    callbackFunction: React.FunctionComponent;
 
-  // for text related:
-  const [ellipsis, setEllipsis] = useState(true);
+    
+};
 
-  // const onHeartClick = () => {
-  //   setHeartClick()
-  // }
-
-  const loadMoreData = () => {
-    if (loading) {
-      return;
-    }
-    setLoading(true);
-    fetch(process.env.REACT_APP_HOST + `thread/${page}`)
-      .then((res) => res.json())
-      .then((body) => {
-        setData([...data, ...body.data]);
-        setLimit(body.data);
-        setPage(page + 1);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-        setHasReachedEnd(true);
-      });
-  };
-
-  const initLoadCallBack = useCallback(() => {
-    if (loading) {
-      return;
-    }
-    setLoading(true);
-    fetch(process.env.REACT_APP_HOST + `thread/${page}`)
-      .then((res) => res.json())
-      .then((body) => {
-        setData([...data, ...body.data]);
-        setLimit(body.data);
-        setPage(page + 1);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-        setHasReachedEnd(true);
-      });
-  }, []);
-
-  useEffect(() => {
-    loadMoreData();
-  }, []);
-
-  return (
-    <>
-      <Content style={{ margin: "0px 10px" }}>
-        <CreatePost afterPostCreated={initLoadCallBack} />
+const BasicListComponent: React.FC<BasicListComponentProps> = (functionBundle: 
+BasicListComponentProps) => {
+  return <>
+  <Content>
+  <CreatePost afterPostCreated={initLoadCallBack} />
         <div
           id="scrollableDiv"
           style={{
@@ -140,7 +82,5 @@ const ListView: React.FC = () => {
         </div>
       </Content>
     </>
-  );
 };
-
-export default ListView;
+export default BasicListComponent;
